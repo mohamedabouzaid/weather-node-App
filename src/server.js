@@ -9,10 +9,16 @@ const app =express();
 //the path of static page
 
 
-
+//express define path 
 //console.log(path.join(__dirname,'../public'));
 const publicDirectoryPath=  path.join(__dirname,'../public')
-app.set('view engine', 'hbs');
+const viewsPath=path.join(__dirname,'../views')
+
+//setup handler engin and views location
+app.set('view engine', 'hbs')
+app.set('views',viewsPath)
+
+
 app.use(express.static(publicDirectoryPath))
 
 app.get('/',(req,res)=>{
