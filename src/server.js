@@ -2,6 +2,7 @@ const express=require('express')
 const path = require('path');
 const port = 3000
 const app =express();
+const hbs=require('hbs')
 //absolute path to folder
 //console.log(__dirname);
 //absolute path to file
@@ -12,12 +13,14 @@ const app =express();
 //express define path 
 //console.log(path.join(__dirname,'../public'));
 const publicDirectoryPath=  path.join(__dirname,'../public')
-const viewsPath=path.join(__dirname,'../views')
+const viewsPath=path.join(__dirname,'../template/views')
+const partialPath=path.join(__dirname,'../template/partial')
 
 //setup handler engin and views location
 app.set('view engine', 'hbs')
 app.set('views',viewsPath)
 
+hbs.registerPartials(partialPath)
 
 app.use(express.static(publicDirectoryPath))
 
