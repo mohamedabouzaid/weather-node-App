@@ -3,6 +3,9 @@ const path = require('path');
 const port = 3000
 const app =express();
 const hbs=require('hbs')
+const geocoding=require('./utils/geocoging');
+const forecast=require('./utils/forcast')
+
 //absolute path to folder
 //console.log(__dirname);
 //absolute path to file
@@ -51,10 +54,42 @@ app.get('/about',(req,res)=>{
 })
   //send array of objects
   app.get('/weather', (req, res) => {
-    res.send({
-        forecast: 'It is snowing',
-        location: 'Philadelphia'
-    })
+      if(!req.query.address){
+    
+        return res.send({error:"you must send address"})
+
+      }
+      else{
+         
+        geocoding(req.query.address, (error, {latitude,longitude,place}={}) => {
+            if(error){
+              return res.send(error);
+            }
+            
+             forecast(latitude,longitude,(error, forecastData) => {
+               if(error){
+                 return res.send(error);
+               }
+               res.send({
+                forecast: forecastData,
+                place,
+                address:req.query.address
+
+                });
+             
+             });
+           });
+      }
+   
+})
+//req.query
+app.get('/product', (req, res) => {
+    if(!req.query.search){
+     return res.send({error:'you must enter search'})
+
+    }
+    console.log(req.query.search);
+    res.send({search:'your select search'})
 })
 
 app.get('/help/*', (req, res) => {
