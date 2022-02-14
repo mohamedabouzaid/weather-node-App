@@ -25,7 +25,8 @@ res.render('index',{
  app.get('/about',(req,res)=>{
 
     res.render('about',{
-        name:"mohamed"
+        name:"mohamed
+        "
  })
  //send json(object trans to json)
  app.get('/help', (req, res) => {
