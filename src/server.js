@@ -26,7 +26,8 @@ app.use(express.static(publicDirectoryPath))
 
 app.get('/',(req,res)=>{
 res.render('index',{
-    title:"Web",
+    title: 'Weather',
+    name: 'Abouzaid'
    
 })
 
@@ -35,21 +36,43 @@ res.render('index',{
 app.get('/about',(req,res)=>{
     res.render('about',{
        
-        name:"mohamed"
+        title: 'About Me',
+        name: 'mohamed abouzaid'
     })
     
     })
  //send json(object trans to json)
  app.get('/help', (req, res) => {
-    res.send({name:"mohamed",age:26})
-  })
+    res.render('help', {
+        helpText: 'This is some helpful text.',
+        title: 'Help',
+        name: 'Abouzaid'
+    })
+})
   //send array of objects
- app.get('/weather', (req, res) => {
-   res.send([{name:"mohamed",age:26},{name:"ahmed",age:20}])
- })
- app.get('**', (req, res) => {
-   res.send('404 page')
- })
+  app.get('/weather', (req, res) => {
+    res.send({
+        forecast: 'It is snowing',
+        location: 'Philadelphia'
+    })
+})
+
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        name: 'Andrew Mead',
+        errorMessage: 'Help article not found.'
+    })
+})
+
+
+app.get('*', (req, res) => {
+    res.render('404', {
+        title: '404',
+        name: 'Andrew Mead',
+        errorMessage: 'Page not found.'
+    })
+})
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
