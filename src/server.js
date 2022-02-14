@@ -18,16 +18,18 @@ app.use(express.static(publicDirectoryPath))
 app.get('/',(req,res)=>{
 res.render('index',{
     title:"Web",
-    
+   
+})
 
 })
 ///send html
- app.get('/about',(req,res)=>{
-
+app.get('/about',(req,res)=>{
     res.render('about',{
-        name:"mohamed
-        "
- })
+       
+        name:"mohamed"
+    })
+    
+    })
  //send json(object trans to json)
  app.get('/help', (req, res) => {
     res.send({name:"mohamed",age:26})
