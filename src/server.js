@@ -40,7 +40,7 @@ app.get('/about',(req,res)=>{
     res.render('about',{
        
         title: 'About Me',
-        name: 'mohamed abouzaid'
+        name: ' abouzaid'
     })
     
     })
@@ -95,7 +95,7 @@ app.get('/product', (req, res) => {
 app.get('/help/*', (req, res) => {
     res.render('404', {
         title: '404',
-        name: 'Andrew Mead',
+        name: 'Abouzaid',
         errorMessage: 'Help article not found.'
     })
 })
@@ -104,7 +104,7 @@ app.get('/help/*', (req, res) => {
 app.get('*', (req, res) => {
     res.render('404', {
         title: '404',
-        name: 'Andrew Mead',
+        name: 'Aouzaid',
         errorMessage: 'Page not found.'
     })
 })
